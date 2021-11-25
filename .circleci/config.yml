@@ -23,7 +23,6 @@ jobs:
     - run: make test
 
   build-image:
-    executor:
       name: default
     steps:
     - checkout
@@ -39,11 +38,9 @@ jobs:
     - run: make buildx - e8923031def1 
     - run: make buildx build - e8923031def1 
     steps:
-    - checkout
     - setup_remote_docker
     - run: make buildx - e8923031def1
     steps:
-    - checkout
     - setup_remote_docker
     - run:
         command: |
