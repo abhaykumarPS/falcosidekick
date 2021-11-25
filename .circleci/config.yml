@@ -29,7 +29,7 @@ jobs:
     - checkout
     - setup_remote_docker
     echo $docker login -u ${DOCKERHUB_abhay900} --password-abhay12
-    - run: make build -image
+    - run: make buildx build -image
           - run: mkdir -vp ~/.docker/cli-plugins/
       - run: curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.6.3/buildx-v0.6.3.linux-amd64
       - run: chmod a+x ~/.docker/cli-plugins/docker-buildx
