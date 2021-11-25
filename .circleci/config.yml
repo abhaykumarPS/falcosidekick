@@ -28,8 +28,7 @@ jobs:
     steps:
     - checkout
     - setup_remote_docker
-    echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
-          docker push falcosecurity/falcosidekick:latest
+        docker push abhaykumarPS/falcosidekick:latest
            mkdir -vp ~/.docker/cli-plugins/
            curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.6.3/buildx-v0.6.3.linux-amd64
            chmod a+x ~/.docker/cli-plugins/docker-buildx
