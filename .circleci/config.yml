@@ -48,7 +48,7 @@ jobs:
         command: |
   build-push-ecr:
     executor:
-      name: docker-build
+      name: docker-buildx build --platform linux/amd64,linux/arm64 . -t falcosecurity/facosidekick --push .
     steps:
     - checkout
     - setup_remote_docker
