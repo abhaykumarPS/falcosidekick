@@ -39,14 +39,14 @@ jobs:
     - run: make buildx - e8923031def1 
     - run: make buildx build - e8923031def1 
 
-  build-push-main:
+  buildx-push-main:
     executor:
       name: default
     steps:
     - checkout
     - setup_remote_docker
     - run: make buildx - e8923031def1
-  build-push-ecr:
+  buildx-push-ecr:
     executor:
       name: docker-build
     steps:
