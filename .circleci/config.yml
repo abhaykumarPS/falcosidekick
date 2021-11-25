@@ -48,12 +48,12 @@ jobs:
     - run: make buildx - e8923031def1
   build-push-ecr:
     executor:
-      name: docker-buildx build --platform linux/amd64,linux/arm64 . -t falcosecurity/facosidekick --push .
+      name: docker-build
     steps:
     - checkout
     - setup_remote_docker
     - run:
-        command:
+        command: |
           apk update
           apk add --update make bash
           make build-image
