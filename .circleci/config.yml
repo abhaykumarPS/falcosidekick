@@ -28,7 +28,7 @@ jobs:
     steps:
     - checkout
     - setup_remote_docker
-    - run: make build-image
+    - run: make buildx build - e8923031def1 
 
   build-push-main:
     executor:
@@ -43,7 +43,7 @@ jobs:
     - run: docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
     - run: docker run -it --rm --privileged tonistiigi/binfmt --install all
     - run: docker buildx create --use --name mybuilder
-    - run: make buildx -image
+    - run: make buildx - e8923031def1 
     - run:
         command: |
   build-push-ecr:
