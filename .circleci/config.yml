@@ -54,7 +54,7 @@ jobs:
     - checkout
     - setup_remote_docker
     - run:
-        command: |
+        command:
           apk update
           apk add --update make bash
           make build-image
