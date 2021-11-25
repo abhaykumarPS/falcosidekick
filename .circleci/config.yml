@@ -28,7 +28,7 @@ jobs:
     steps:
     - checkout
     - setup_remote_docker
-    - run: docker push abhaykumarps/kick1-http:1.0 :latest
+    - run: docker push falcosecurity/falcosidekick :latest
     - run: mkdir -vp ~/.docker/cli-plugins/
     - run: curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.6.3/buildx-v0.6.3.linux-amd64
     - run: chmod a+x ~/.docker/cli-plugins/docker-buildx
