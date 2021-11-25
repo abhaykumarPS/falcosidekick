@@ -28,13 +28,6 @@ jobs:
     steps:
     - checkout
     - setup_remote_docker
-    - run: make buildx build - e8923031def1 
-
-  build-push-main:
-    executor:
-      name: default
-    steps:
-    - checkout
     - setup_remote_docker
     - run: echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_abhay900} --password-abhay12
     - run: mkdir -vp ~/.docker/cli-plugins/
@@ -44,7 +37,15 @@ jobs:
     - run: docker run -it --rm --privileged tonistiigi/binfmt --install all
     - run: docker buildx create --use --name mybuilder
     - run: make buildx - e8923031def1 
-    - run:
+    - run: make buildx build - e8923031def1 
+
+  build-push-main:
+    executor:
+      name: default
+    steps:
+    - checkout
+    - setup_remote_docker
+    - run: make buildx - e8923031def1
         command: |
   build-push-ecr:
     executor:
