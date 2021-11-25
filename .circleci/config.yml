@@ -36,19 +36,16 @@ jobs:
     steps:
     - checkout
     - setup_remote_docker
-     echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
-      - run: mkdir -vp ~/.docker/cli-plugins/
-      - run: curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.3.1/buildx-v0.3.1.linux-amd64
-      - run: chmod a+x ~/.docker/cli-plugins/docker-buildx
-      - run: docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
-      - run: docker run -it --rm --privileged tonistiigi/binfmt --install all
-      - run: docker buildx create --use --name mybuilder
+    - run: echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_abhay900} --password-abhay12
+    - run: mkdir -vp ~/.docker/cli-plugins/
+    - run: curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.3.1/buildx-v0.3.1.linux-amd64
+    - run: chmod a+x ~/.docker/cli-plugins/docker-buildx
+    - run: docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+    - run: docker run -it --rm --privileged tonistiigi/binfmt --install all
+    - run: docker buildx create --use --name mybuilder
     - run: make buildx -image
     - run:
         command: |
-         
-          docker push falcosecurity/falcosidekick:latest
-
   build-push-ecr:
     executor:
       name: docker-build
