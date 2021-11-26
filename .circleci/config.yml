@@ -33,7 +33,6 @@ jobs:
     - run: chmod a+x ~/.docker/cli-plugins/docker-buildx
     - run: docker login -u abhay900 -p 3c2a82d1-7a08-4753-a49b-f8ac2e425308
     - run: docker run -it --rm --privileged tonistiigi/binfmt --install all
-    - run: docker buildx create --use --name mybuilder
     - run: docker buildx build --platform linux/amd64,linux/arm64 -t abhay900/falcosidekick --push .
 
   build-push-main:
