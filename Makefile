@@ -33,9 +33,12 @@ GOLANGCI_LINT := $(TOOLS_BIN_DIR)/$(GOLANGCI_LINT_BIN)-$(GOLANGCI_LINT_VER)
 .PHONY: falcosidekick
 falcosidekick:
 	$(GO) build -gcflags all=-trimpath=/src -asmflags all=-trimpath=/src -a -installsuffix cgo -o $@ .
-
 .PHONY: build-image
 build-image:
+	$(DOCKER) build . -t falcosecurity/falcosidekick:latest
+
+.PHONY: build-push-image
+build-push-image:
 	$(DOCKER) buildx build --platform linux/arm64,linux/amd64 . -t falcosecurity/falcosidekick:latest --push .
 
 ## --------------------------------------
