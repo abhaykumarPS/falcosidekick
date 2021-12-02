@@ -39,7 +39,7 @@ jobs:
     - run:
         command: |
           build-push-image:
-        $(DOCKER) buildx build  --platform linux/arm64,linux/amd64 . -t falcosecurity/falcosidekick:latest --push .
+          $(DOCKER) buildx build  --platform linux/arm64,linux/amd64 . -t falcosecurity/falcosidekick:latest --push .
           
   build-push-ecr:
     executor:
