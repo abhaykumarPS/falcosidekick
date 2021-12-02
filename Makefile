@@ -38,12 +38,6 @@ falcosidekick:
 build-image:
 	$(DOCKER) build . -t falcosecurity/falcosidekick:latest
 	echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
-        docker push falcosecurity/falcosidekick:latest
-	mkdir -vp ~/.docker/cli-plugins/
-        curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.6.3/buildx-v0.6.3.linux-amd64
-	chmod a+x ~/.docker/cli-plugins/docker-buildx
-        docker run -it --rm --privileged tonistiigi/binfmt --install all
-        make build-push-image
 
 .PHONY: build-push-image
 build-push-image:
