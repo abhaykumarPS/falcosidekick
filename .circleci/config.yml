@@ -28,12 +28,7 @@ jobs:
     steps:
     - checkout
     - setup_remote_docker
-    - run: mkdir -vp ~/.docker/cli-plugins/
-    - run: echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
-    - run: curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.6.3/buildx-v0.6.3.linux-amd64
-    - run: chmod a+x ~/.docker/cli-plugins/docker-buildx
-    - run: docker run -it --rm --privileged tonistiigi/binfmt --install all
-    - run: docker buildx build --platform linux/amd64,linux/arm64 -t odidev/falcosidekick --push .
+    - run: make build-image
 
   build-push-main:
     executor:
@@ -41,10 +36,15 @@ jobs:
     steps:
     - checkout
     - setup_remote_docker
-    - run: make build-image
     - run:
         command: |
-
+          echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
+          mkdir -vp ~/.docker/cli-plugins/
+          curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.6.3/buildx-v0.6.3.linux-amd64
+          chmod a+x ~/.docker/cli-plugins/docker-buildx
+          docker run -it --rm --privileged tonistiigi/binfmt --install all
+          make build-push-image
+          
   build-push-ecr:
     executor:
       name: docker-build
@@ -86,7 +86,7 @@ jobs:
       - run:
           name: Prepare env
           command: |
-      - run: echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
+            echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
             aws ecr-public get-login-password --region us-east-1 | \
               docker login --username AWS --password-stdin public.ecr.aws/falcosecurity
       - run:
