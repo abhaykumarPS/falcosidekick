@@ -37,12 +37,7 @@ falcosidekick:
 .PHONY: build-image
 build-image:
 	$(DOCKER) build . -t falcosecurity/falcosidekick:latest
-	echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
 
-.PHONY: build-push-image
-build-push-image:
-	$(DOCKER) buildx build  --platform linux/arm64,linux/amd64 . -t falcosecurity/falcosidekick:latest --push .
-	docker push falcosecurity/falcosidekick:latest
 ## --------------------------------------
 ## Test
 ## --------------------------------------
