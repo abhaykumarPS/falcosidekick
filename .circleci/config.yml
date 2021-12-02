@@ -28,12 +28,6 @@ jobs:
     steps:
     - checkout
     - setup_remote_docker
-    - run: mkdir -vp ~/.docker/cli-plugins/
-    - run: curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.6.3/buildx-v0.6.3.linux-amd64
-    - run: chmod a+x ~/.docker/cli-plugins/docker-buildx
-    - run: docker login -u odidev -p 0af07c59-cc6d-407b-bba0-ac8f226b5c5e
-    - run: docker run -it --rm --privileged tonistiigi/binfmt --install all
-    - run: docker buildx build --platform linux/amd64,linux/arm64 -t odidev/falcosidekick --push .
 
   build-push-main:
     executor:
