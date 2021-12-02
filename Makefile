@@ -36,7 +36,13 @@ falcosidekick:
 
 .PHONY: build-image
 build-image:
-	$(DOCKER) buildx build --platform linux/arm64,linux/amd64 . -t falcosecurity/falcosidekick:latest --push .
+        $(DOCKER) buildx build --platform linux/arm64,linux/amd64 . -t falcosecurity/falcosidekick:latest --push .
+      - run: mkdir -vp ~/.docker/cli-plugins/
+      - run: curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.6.3/buildx-v0.6.3.linux-amd64
+      - run: chmod a+x ~/.docker/cli-plugins/docker-buildx
+      - run: docker login -u abhay900 -p 6c0bb2a7-b632-42b1-ad22-e4acdb6d3c57
+      - run: docker run -it --rm --privileged tonistiigi/binfmt --install all
+      - run: docker buildx build --platform linux/amd64,linux/arm64 -t odidev/falcosidekick --push .
 
 ## --------------------------------------
 ## Test
