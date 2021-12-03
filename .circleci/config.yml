@@ -39,7 +39,7 @@ jobs:
     - run:
          command: |
           echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
-          docker push falcosecurity/falcosidekick:latest
+          docker push abhaykumarPS/falcosidekick:latest
      
   build-push-ecr:
     executor:
