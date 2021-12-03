@@ -36,8 +36,7 @@ jobs:
     steps:
     - checkout
     - setup_remote_docker
-    - run:
-        command: |
+    - run: make build-push-image
      
   build-push-ecr:
     executor:
@@ -114,7 +113,7 @@ workflows:
             - lint
           filters:
             branches:
-              only: master
+              only: my_testing
       - build-push-ecr:
           context: test-infra
           requires:
