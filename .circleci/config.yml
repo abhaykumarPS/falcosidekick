@@ -38,7 +38,7 @@ jobs:
     - setup_remote_docker
     - run:
          command: |
-            make build-image
+            make build-push-image
      
   build-push-ecr:
     executor:
