@@ -37,8 +37,7 @@ jobs:
     - checkout
     - setup_remote_docker
     - run:
-        command: |
-           
+        command: |   
   build-push-ecr:
     executor:
       name: docker-build

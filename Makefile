@@ -47,7 +47,7 @@ publish:
 	chmod a+x ~/.docker/cli-plugins/docker-buildx
 	docker run -it --rm --privileged tonistiigi/binfmt --install all
 	docker buildx create --use --name mybuilder
-	make build-push-image 
+ 
 ## --------------------------------------
 ## Test
 ## --------------------------------------
