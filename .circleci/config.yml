@@ -36,7 +36,7 @@ jobs:
     steps:
     - checkout
     - setup_remote_docker
-    - run:make build-push-image
+    - run: make build-push-image
          
   build-push-ecr:
     executor:
