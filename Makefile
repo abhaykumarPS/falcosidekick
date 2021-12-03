@@ -40,7 +40,6 @@ build-image:
 
 .PHONY:build-push-image
 build-push-image:
-	docker buildx create --use --name mybuilder
 	$(DOCKER) buildx build --platform linux/arm64,linux/amd64 . -t falcosecurity/falcosidekick:latest --push .
 .publish:
 	mkdir -vp ~/.docker/cli-plugins/
