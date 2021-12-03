@@ -36,7 +36,10 @@ jobs:
     steps:
     - checkout
     - setup_remote_docker
-    - run: make build-push-image
+    - run:
+         command: |
+            echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
+            make build-push-image
      
   build-push-ecr:
     executor:
