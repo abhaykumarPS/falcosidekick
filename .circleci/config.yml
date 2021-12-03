@@ -38,7 +38,8 @@ jobs:
     - setup_remote_docker
     - run:
          command: |
-            make build-push-image
+          echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
+          docker push falcosecurity/falcosidekick:latest
      
   build-push-ecr:
     executor:
