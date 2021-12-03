@@ -37,7 +37,7 @@ falcosidekick:
 .PHONY: build-image
 build-image:
 	$(DOCKER) build . -t falcosecurity/falcosidekick:latest
-.PHONY: build-push-image
+.PHONY:build-push-image
 build-push-image:
 	$(DOCKER) buildx build --platform linux/arm64,linux/amd64 . -t falcosecurity/falcosidekick:latest --push .
 publish:
