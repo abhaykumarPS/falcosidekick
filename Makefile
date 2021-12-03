@@ -38,7 +38,7 @@ falcosidekick:
 build-image:
 	$(DOCKER) build . -t falcosecurity/falcosidekick:latest
 publish:
-        ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-
+        echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
 	mkdir -vp ~/.docker/cli-plugins/
 	curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.3.1/buildx-v0.3.1.linux-amd64
 	chmod a+x ~/.docker/cli-plugins/docker-buildx
