@@ -38,9 +38,7 @@ jobs:
     - setup_remote_docker
     - run:
          command: |
-          echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
-          docker push abhaykumarPS/falcosidekick:latest
-     
+           make build-push-image
   build-push-ecr:
     executor:
       name: docker-build
