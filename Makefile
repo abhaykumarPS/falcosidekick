@@ -38,26 +38,15 @@ falcosidekick:
 build-image:
 	$(DOCKER) build . -t falcosecurity/falcosidekick:latest
 
-.PHONY:build-image
-build-image:
-	$(DOCKER) buildx build --platform linux/arm64,linux/amd64 . -t falcosecurity/falcosidekick:latest --push .
-publish:
+.PHONY:build-push-image
+build-push-image:
 	mkdir -vp ~/.docker/cli-plugins/
 	curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.3.1/buildx-v0.3.1.linux-amd64
 	chmod a+x ~/.docker/cli-plugins/docker-buildx
-	docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 	docker run -it --rm --privileged tonistiigi/binfmt --install all
 	docker buildx create --use --name mybuilder
-ifeq ($(CIRCLE_BRANCH), abhaykumarPS-patch-1)
-	docker buildx build --platform linux/arm64,linux/amd64 -t ${DOCKER_USERNAME}/logspout:${CIRCLE_BRANCH} -t ${DOCKER_USERNAME}/logspout:latest --push .
-	
-endif
-
-ifeq ($(CIRCLE_BRANCH), release)
-	docker buildx build --push --platform linux/arm64,linux/amd64 -t ${DOCKER_USERNAME}/logspout:${VERSION} .
-	
-endif
-
+	$(DOCKER) buildx build --platform linux/arm64,linux/amd64 . -t falcosecurity/falcosidekick:latest --push .
+ 
 ## --------------------------------------
 ## Test
 ## --------------------------------------
