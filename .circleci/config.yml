@@ -109,7 +109,7 @@ workflows:
       - build-push-main:
           filters:
             branches:
-              only: abhaykumarPS-patch-1
+              only: my_Testing
       - build-push-ecr:
           context: test-infra
           requires:
@@ -117,7 +117,7 @@ workflows:
             - lint
           filters:
             branches:
-              only: master
+              only: my_Teating
       - release:
           context:
             - falcosidekick
