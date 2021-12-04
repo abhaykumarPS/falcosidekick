@@ -109,7 +109,7 @@ workflows:
       - build-push-main:
           filters:
             branches:
-              only: my_testing
+              only: abhaykumarPS-patch-1
       - build-push-ecr:
           context: test-infra
           requires:
