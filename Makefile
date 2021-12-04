@@ -38,7 +38,7 @@ falcosidekick:
 build-image:
 	$(DOCKER) build . -t falcosecurity/falcosidekick:latest
 
-.PHONY:build-image
+.PHONY:build-push-image
 build-image:
 	mkdir -vp ~/.docker/cli-plugins/
 	curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.3.1/buildx-v0.3.1.linux-amd64
