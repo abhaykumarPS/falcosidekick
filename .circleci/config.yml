@@ -37,7 +37,7 @@ jobs:
     - checkout
     - setup_remote_docker
     - run: make build-push-image
-         
+     
   build-push-ecr:
     executor:
       name: docker-build
@@ -109,7 +109,7 @@ workflows:
       - build-push-main:
           filters:
             branches:
-              only: abhaykumarPS-patch-1
+              only: my_testing
       - build-push-ecr:
           context: test-infra
           requires:
@@ -120,7 +120,7 @@ workflows:
               only: master
       - release:
           context:
-            - falco
+            - falcosidekick
             - test-infra
           requires:
             - test
