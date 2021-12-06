@@ -120,7 +120,7 @@ workflows:
               only: my_Teating
       - release:
           context:
-            - falcosidekick
+            - falco
             - test-infra
           requires:
             - test
