@@ -44,7 +44,7 @@ build-push-image:
 	curl --silent -L --output ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.3.1/buildx-v0.3.1.linux-amd64
 	chmod a+x ~/.docker/cli-plugins/docker-buildx
 	docker run -it --rm --privileged tonistiigi/binfmt --install all
-	docker buildx create --use --name falco
+	docker buildx create --use --name mybuilder
 	$(DOCKER) buildx build --platform linux/arm64,linux/amd64 . -t falcosecurity/falcosidekick:latest --push .
  
 ## --------------------------------------
