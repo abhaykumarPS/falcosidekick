@@ -111,13 +111,13 @@ workflows:
             branches:
               only: my_Testing
       - build-push-ecr:
-          context: test-infra
+          context: falco
           requires:
             - test
             - lint
           filters:
             branches:
-              only: my_Teating
+              only: master
       - release:
           context:
             - falco
