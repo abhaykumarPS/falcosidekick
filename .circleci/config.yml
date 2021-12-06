@@ -120,7 +120,7 @@ workflows:
               only: master
       - release:
           context:
-            - falco
+            - falco1
             - test-infra
           requires:
             - test
